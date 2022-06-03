@@ -14,10 +14,10 @@ const [isMobile, setIsMobile] = useState(null)
   useEffect(() => {
    
     setUserAgent(navigator.userAgent)
-    setUserAgentData(navigator.userAgentData.brands)
+    setUserAgentData(navigator?.userAgentData?.brands)
     setVendor(navigator.vendor)
-    setAppVersion(navigator.userAgentData.platform)
-    setIsMobile(navigator.userAgentData.mobile)
+    setAppVersion(navigator?.userAgentData?.platform)
+    setIsMobile(navigator?.userAgentData?.mobile)
   }, [])
   
   return (
