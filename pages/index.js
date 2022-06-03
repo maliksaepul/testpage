@@ -10,6 +10,8 @@ const [vendor, setVendor] = useState(null)
 const [appVersion, setAppVersion] = useState(null)
 const [isMobile, setIsMobile] = useState(null)
 const [browserName, setBrowserName] = useState(null)
+const [iosName, setIosName] = useState(null)
+
 
 
   useEffect(() => {
@@ -20,6 +22,7 @@ const [browserName, setBrowserName] = useState(null)
     setAppVersion(navigator?.userAgentData?.platform)
     setIsMobile(navigator?.userAgentData?.mobile)
     setBrowserName(fnBrowserDetect())
+    setIosName(detectBrowser())
   }, [])
 
   const handleCLick = () => {
@@ -59,7 +62,27 @@ const [browserName, setBrowserName] = useState(null)
     
     return browserName;      
 }
-  
+
+const detectBrowser = () => {
+  let standalone = window.navigator.standalone,
+    userAgent = window.navigator.userAgent.toLowerCase(),
+    safari = /safari/.test( userAgent ),
+    ios = /iphone|ipod|ipad/.test( userAgent );
+
+if( ios ) {
+    if ( !standalone && safari ) {
+        return safari;
+    } else if ( standalone && !safari ) {
+        //standalone
+        return standalone
+    } else if ( !standalone && !safari ) {
+        return ios
+    };
+} else {
+    //not iOS
+    return userAgent
+};
+}   
   return (
     <div className={styles.container}>
       <Head>
@@ -77,6 +100,8 @@ const [browserName, setBrowserName] = useState(null)
          <p>Platform : {appVersion}</p>
          <p>Mobile: {isMobile ? 'true' : 'false'}</p>
          <p>Browser: {browserName}</p>
+         <p>Browser 2: {iosName}</p>
+
 
 
          <button type='button' onClick={handleCLick}>OPEN NEW TAB</button>
