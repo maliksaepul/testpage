@@ -9,6 +9,7 @@ const [userAgentData, setUserAgentData] = useState([])
 const [vendor, setVendor] = useState(null)
 const [appVersion, setAppVersion] = useState(null)
 const [isMobile, setIsMobile] = useState(null)
+const [browserName, setBrowserName] = useState(null)
 
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const [isMobile, setIsMobile] = useState(null)
     setVendor(navigator.vendor)
     setAppVersion(navigator?.userAgentData?.platform)
     setIsMobile(navigator?.userAgentData?.mobile)
+    setBrowserName(fnBrowserDetect())
   }, [])
 
   const handleCLick = () => {
@@ -35,6 +37,28 @@ const [isMobile, setIsMobile] = useState(null)
       alert(error.message)
     }
   }
+
+  function fnBrowserDetect(){
+                 
+    let userAgent = navigator.userAgent;
+    let browserName;
+    
+    if(userAgent.match(/chrome|chromium|crios/i)){
+        browserName = "chrome";
+      }else if(userAgent.match(/firefox|fxios/i)){
+        browserName = "firefox";
+      }  else if(userAgent.match(/safari/i)){
+        browserName = "safari";
+      }else if(userAgent.match(/opr\//i)){
+        browserName = "opera";
+      } else if(userAgent.match(/edg/i)){
+        browserName = "edge";
+      }else{
+        browserName="No browser detection";
+      }
+    
+    return browserName;      
+}
   
   return (
     <div className={styles.container}>
@@ -52,8 +76,11 @@ const [isMobile, setIsMobile] = useState(null)
          <p>UserVendor : {vendor}</p>
          <p>Platform : {appVersion}</p>
          <p>Mobile: {isMobile ? 'true' : 'false'}</p>
+         <p>Browser: {browserName}</p>
+
 
          <button type='button' onClick={handleCLick}>OPEN NEW TAB</button>
+         <br/>
          <button type='button' onClick={handleCLickSelft}>REPLACE PAGE</button>
 
       </main>
