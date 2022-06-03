@@ -19,6 +19,22 @@ const [isMobile, setIsMobile] = useState(null)
     setAppVersion(navigator?.userAgentData?.platform)
     setIsMobile(navigator?.userAgentData?.mobile)
   }, [])
+
+  const handleCLick = () => {
+    try {
+      window.open('https://business.inspigo.id', '_blank')
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  const handleCLickSelft = () => {
+    try {
+      window.open('https://business.inspigo.id', '_self')
+    } catch (error) {
+      alert(error.message)
+    }
+  }
   
   return (
     <div className={styles.container}>
@@ -36,6 +52,9 @@ const [isMobile, setIsMobile] = useState(null)
          <p>UserVendor : {vendor}</p>
          <p>Platform : {appVersion}</p>
          <p>Mobile: {isMobile ? 'true' : 'false'}</p>
+
+         <button type='button' onClick={handleCLick}>OPEN NEW TAB</button>
+         <button type='button' onClick={handleCLickSelft}>REPLACE PAGE</button>
 
       </main>
     </div>
