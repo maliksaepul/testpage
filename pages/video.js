@@ -7,7 +7,7 @@ const videoPage = () => {
         <h1>
         videoPage
         </h1>
-        <VideoPage videoId='jQwU0U6eSuY' />
+        <VideoPage videoId='ynKqQ7f77-g' />
     </div>
   )
 }
