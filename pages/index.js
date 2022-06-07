@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Home() {
 
@@ -107,6 +108,10 @@ if( ios ) {
          <button type='button' onClick={handleCLick}>OPEN NEW TAB</button>
          <br/>
          <button type='button' onClick={handleCLickSelft}>REPLACE PAGE</button>
+
+         <Link href={'/video'}>
+           <a> Video</a>
+         </Link>
 
       </main>
     </div>
